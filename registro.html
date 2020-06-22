@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang='es' style='height: 100%;'>
+<head>
+    <title>Conteo Muertes COVID-19</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" >
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+    <script>
+        $(document).ready(function(){
+       $('select').formSelect();
+        });
+    </script>
+    <script>  
+        $(document).ready(function(){
+        $('.datepicker').datepicker();
+        });
+    </script>
+</head>
+<body class="indigo lighten-5">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Muertes COVID-19</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="{% url 'index' %}">Index</a></li>
+            <li class="active"><a href="">Registro</a></li>
+            <li><a href="{% url 'estadistica' %}">Estadistica</a></li>
+            </ul>
+        </div>
+    </nav>
+</body>
+<!--Editar de aquí para abajo-->
+
+
+<h5 style="text-align: center;">Registro de muertes por COVID-19</h5>
+<body class="indigo lighten-5"></body>
+<div class="row">
+  <div class="col s7 offset-s3">
+    <div class="card blue lighten-5">
+      <h6 style="text-align: center">Ingrese la fecha</h6>
+      <input type="text" class="datepicker">
+      <form action="#">
+        <h6 style="text-align: center">¿Qué resultado tuvo el test para COVID-19 del paciente?</h6>
+        <p>
+          <label>
+            <input name="group1" type="radio"  checked />
+            <span>Positivo</span>
+          </label>
+        </p>
+        <form action="#">
+          <p>
+            <label>
+              <input name="group1" type="radio" checked />
+              <span>Negativo</span>
+            </label>
+          </p>
+        </form>
+          <h6 style="text-align: center">Indique qué síntomas presentaba el fallecido</h6>
+          <table>
+            <thead>
+              <tr>
+                <th>Tipo de Sintomas</th>
+                <th>Sintomas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <forms> 
+                <tr>
+                    <td><d>Sintomas Habituales</d></td>
+                    <td><div class="input-field">
+                        <select multiple>
+                          {%for h in habituales%}
+                          <option value="1">{{h}}</option>
+                          {%endfor%}
+                        </select>
+                    </td></div>
+                    <td><d>Sintomas Menos Comunes</d></td>
+                    <td><div class="input-field">
+                        <select multiple>
+                          {%for m in menos%}
+                          <option value="2">{{m}}</option>
+                          {%endfor%}
+                        </select>
+                    </td></div>
+                    <td><d>Sintomas Graves</d></td>
+                    <td><div class="input-field">
+                        <select multiple>
+                          {%for g in graves%}
+                          <option value="3">{{g}}</option>
+                          {%endfor%}
+                        </select>
+                      </td></div>
+                </tr>
+              </forms>
+            </tbody>
+          </table>
+      </div>
+    </div>
+</div>
+</html>

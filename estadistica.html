@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" style='height: 100%;'>
+<head>
+    <title>Covid-19</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" >
+    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
+</head>
+<body class="indigo lighten-5">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo center">Muertes COVID-19</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a href="{% url 'index' %}">Index</a></li>
+            <li class="active"><a href="">Estadistica</a></li>
+            <li><a href="{% url 'registro' %}">Registro</a></li>
+            </ul>
+        </div>
+    </nav>
+</body>
+<body class= "deep-purple lighten-3">
+  <div class="container">
+    <div class="row">
+
+      <div class="col s12">
+        <h1 style="text-align:center;">Estadisticas del Covid-19</h1>
+      </div>
+      <div class="col s12">
+        <h5 style="text-align:center;"> Resumen de sus principales sintomas: </h5>
+      </div>
+
+      <div class="col s12" style="text-align:center;"> 
+        <table>
+        <thead>
+         <tr>
+              <th>Sintomas</th>
+              <th>Cantidad de contagiados</th>
+              <th>Porcentaje respecto a la poblacion total</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>Fiebre</td>
+            <td>x</td>
+            <td>(x * 100)/Total personas</td>
+          </tr>
+          <tr>
+            <td>Tos seca</td>
+            <td>y</td>
+            <td>(y * 100)/Total personas</td>
+          </tr>
+          <tr>
+            <td>Cansancio</td>
+            <td>z</td>
+            <td>(z * 100)/Total personas</td>
+          </tr>
+        </tbody>
+      </table>
+      </div>
+      <div>
+        <div class="col s12">
+          <h5 style="text-align:center;"> Personas contagiadas por este virus: </h5>
+        </div>
+  
+        <div class="col s12" style="text-align:center;"> 
+          <table>
+          <thead>
+           <tr>
+                <th>Personas</th>
+                <th>Numero de individuos</th>
+                <th>Porcentaje respecto a la poblacion total</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+              <td>Contagiadas</td>
+              <td>p</td>
+              <td>(x * 100)/Total personas</td>
+            </tr>
+            <tr>
+              <td>Fallecidas</td>
+              <td>q</td>
+              <td>(y * 100)/Total personas</td>
+            </tr>
+            <tr>
+              <td>Recuperadas</td>
+              <td>r</td>
+              <td>(z * 100)/Total personas</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+        
+   </div>
+  </div>
+</body>
+</html>
