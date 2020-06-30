@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang='es' style='height: 100%;'>
 <head>
@@ -14,25 +15,14 @@
             <a href="#" class="brand-logo center">Muertes COVID-19</a>
             <ul id="nav-mobile" class="left hide-on-med-and-down">
             <li><a href="{% url 'registro' %}">Registro</a></li>
-            <li class="active"><a href="">Index</a></li>
+            <li><a href="{% url 'index' %}">Index</a></li>
             <li><a href="{% url 'estadistica' %}">Estadistica</a></li>
             </ul>
         </div>
-    </nav>
-</body>
-<body class="indigo lighten-5">
- 
-    <div class="container">
-        <div class="row">
- 
-            <div class="col s12">
-                <h1 style="text-align: center;">Bienvenido al registro de muertes COVID-19</h1>
-            </div>
-
-            <div class="col s12 center-align">
-                <img src="{% static 'img/img1.png' %}" height="300"/>
-            </div>
+        <div class='container'>
+            {% block container%}
+            {% endblock %}
         </div>
-    </div>
+    </nav>
 </body>
 </html>

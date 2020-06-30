@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang='es' style='height: 100%;'>
+{% include 'base.html' %}
+{% load static %}
+
+{% block container %}
+
+
 <head>
-    <title>Conteo Muertes COVID-19</title>
-    {% load static %}
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}" >
-    <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
     <script>
         $(document).ready(function(){
        $('select').formSelect();
@@ -18,18 +16,7 @@
         });
     </script>
 </head>
-<body class="indigo lighten-5">
-    <nav>
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo center">Muertes COVID-19</a>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="{% url 'index' %}">Index</a></li>
-            <li class="active"><a href="">Registro</a></li>
-            <li><a href="{% url 'estadistica' %}">Estadistica</a></li>
-            </ul>
-        </div>
-    </nav>
-</body>
+
 <!--Editar de aquí para abajo-->
 
 
@@ -38,64 +25,77 @@
 <div class="row">
   <div class="col s7 offset-s3">
     <div class="card blue lighten-5">
-      <h6 style="text-align: center">Ingrese la fecha</h6>
-      <input type="text" class="datepicker">
-      <form action="#">
-        <h6 style="text-align: center">¿Qué resultado tuvo el test para COVID-19 del paciente?</h6>
-        <p>
-          <label>
-            <input name="group1" type="radio"  checked />
-            <span>Positivo</span>
-          </label>
-        </p>
-        <form action="#">
-          <p>
-            <label>
-              <input name="group1" type="radio" checked />
-              <span>Negativo</span>
-            </label>
-          </p>
-        </form>
-          <h6 style="text-align: center">Indique qué síntomas presentaba el fallecido</h6>
-          <table>
-            <thead>
-              <tr>
-                <th>Tipo de Sintomas</th>
-                <th>Sintomas</th>
-              </tr>
-            </thead>
-            <tbody>
-              <forms> 
+      <form id="form1" action="{% url 'registro' %}" method="post">
+        {% csrf_token %}
+        <h6 style="text-align: center">Ingrese la fecha</h6>
+        <input type="text" class="datepicker" name = "fecha">
+          <form action="# {% url 'registro' %}" id="form1" method="post"></form>
+          <h6 style="text-align: center">¿Qué resultado tuvo el test para COVID-19 del paciente?</h6>
+            <div class="input-field col s12">
+              <select id="covid" name="covid">
+                <option value="" disabled selected>Escoge la opción</option>
+                <option value="1">Positivo</option>
+                <option value="2">Negativo</option>
+                <option value="3">No se realizo</option>
+              </select>
+            </div>
+         </form>
+            <h6 style="text-align: center">Indique qué síntomas presentaba el fallecido</h6>
+            <table>
+             <thead>
                 <tr>
-                    <td><d>Sintomas Habituales</d></td>
-                    <td><div class="input-field">
-                        <select multiple>
-                          {%for h in habituales%}
-                          <option value="1">{{h}}</option>
-                          {%endfor%}
-                        </select>
-                    </td></div>
-                    <td><d>Sintomas Menos Comunes</d></td>
-                    <td><div class="input-field">
-                        <select multiple>
-                          {%for m in menos%}
-                          <option value="2">{{m}}</option>
-                          {%endfor%}
-                        </select>
-                    </td></div>
-                    <td><d>Sintomas Graves</d></td>
-                    <td><div class="input-field">
-                        <select multiple>
-                          {%for g in graves%}
-                          <option value="3">{{g}}</option>
-                          {%endfor%}
-                        </select>
-                      </td></div>
-                </tr>
-              </forms>
-            </tbody>
+                  <th>Tipo de Sintomas</th>
+                  <th>Sintomas</th>
+               </tr>
+              </thead>
+                <tbody>
+                       <tr>
+                          <td>Sintomas Habituales</td>
+                          <td><div class="input-field">
+                            <select multiple>
+                              {%for h in habituales%}
+                              <option value="1" name="habituales">{{h}}</option>
+                             {%endfor%}
+                            </select>
+                         </td></div>
+                       </tr>
+                     <tr>
+                        <td>Sintomas Menos Comunes</td>
+                        <td><div class="input-field">
+                            <select multiple>
+                              {%for m in menos%}
+                              <option value="2" name="menos">{{m}}</option>
+                              {%endfor%}
+                           </select>
+                        </td></div>
+                      </tr>
+                      <tr>
+                        <td><d>Sintomas Graves</d></td>
+                        <td><div class="input-field">
+                            <select multiple>
+                              {%for g in graves%}
+                              <option value="3" name="graves">{{g}}</option>
+                              {%endfor%}
+                            </select>
+                         </td></div>
+                      </tr>
+                      <input id="idregistro" name="idregistro" type="hidden" value="{{idregistro}}">
+             </tbody>
           </table>
-      </div>
+          <div class="row" style="margin-bottom: 0px;">
+            <div class="input-field col s12" style="text-align:center">
+              <button 
+              class="btn waves-effect waves-light" 
+              type="submit" 
+              name="submit">
+              Enviar
+              </button>
+            </div>
+          </div>
+      </form>
     </div>
+  </div>
 </div>
 </html>
+
+{% endblock %}
